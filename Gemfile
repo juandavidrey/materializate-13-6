@@ -52,3 +52,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
     gem 'railroady'
 end
+
+group :production do
+	gem 'pg', '~> 0.21.0'
+	gem 'rails_12factor', '0.0.2'
+end
