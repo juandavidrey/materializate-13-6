@@ -1,0 +1,27 @@
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+
+<p id="notice"><%= notice %></p>
+
+
+<div class="row">
+ <% @tests.each do |test| %>
+    <div class="col-sm-2">
+      
+        <%= link_to course_test_path(@course.id,test.id) do %>
+        <span class="glyphicon glyphicon-tasks"><p id="test_p"><%= test.title %></p></span>
+    
+        <% end %>
+ 
+    </div>
+ 
+
+<% end %>
+
+</div>
+<br>
+
+
+<%= link_to new_course_test_path  do %>
+<button type="button" class="btn btn-primary btn-md">Nuevo exámen</button>
+ <% end %>
+

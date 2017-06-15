@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  correcta: MyString
+  opc1: MyString
+  opc2: MyString
+  opc3: MyString
+
+two:
+  correcta: MyString
+  opc1: MyString
+  opc2: MyString
+  opc3: MyString

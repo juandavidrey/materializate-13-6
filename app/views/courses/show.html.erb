@@ -1,0 +1,30 @@
+
+
+<%= render 'nav_course' , curso: @course.nombre , id_curso: @course.id %>
+
+
+ <div class="panel-body">
+<p>
+  <strong>Nombre:</strong>
+  <%= @course.nombre %>
+</p>
+
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @course.descripcion %>
+</p>
+
+
+<% if user_signed_in? && current_user.is_student_user? && !current_user.is_registered(current_user.id,@course.id)%>
+
+<%= link_to 'Inscribirse', {:action => 'inscribir'} %>
+
+<% end %>
+
+<% if user_signed_in? && current_user.is_teacher_user? %>
+<%= link_to 'Editar', edit_course_path(@course) %> |
+<%= link_to 'Regresar', courses_path %>
+ <% end %> 
+</div>
+

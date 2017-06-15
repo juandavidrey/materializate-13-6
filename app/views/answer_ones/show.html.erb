@@ -1,0 +1,25 @@
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Correcta:</strong>
+  <%= @answer_one.correcta %>
+</p>
+
+<p>
+  <strong>Opción 1</strong>
+  <%= @answer_one.opc1 %>
+</p>
+
+<p>
+  <strong>Opción 2</strong>
+  <%= @answer_one.opc2 %>
+</p>
+
+<p>
+  <strong>Opción 3</strong>
+  <%= @answer_one.opc3 %>
+</p>
+
+<%= link_to 'Edit',  edit_course_test_question_answer_one_path(@course.id,@test.id,@question.id,@answer_one.id) %> |
+<%= link_to 'Back',  course_test_question_answer_ones_path %>

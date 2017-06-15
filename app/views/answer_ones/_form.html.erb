@@ -1,0 +1,37 @@
+<%= form_for([@course,@test, @question,@answer_one]) do |f| %>
+  <% if answer_one.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer_one.errors.count, "error") %> Prohibido esta respuesta única de ser guardado:</h2>
+
+      <ul>
+      <% answer_one.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :correcta , "correcta" %>
+    <%= f.text_field :correcta %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opc1, "Opción 1" %>
+    <%= f.text_field :opc1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opc2, "Opción 2" %>
+    <%= f.text_field :opc2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opc3, "Opción 3" %>
+    <%= f.text_field :opc3 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

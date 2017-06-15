@@ -1,0 +1,7 @@
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+<h1>Editando pregunta</h1>
+
+<%= render 'form', question: @question %>
+
+<%= link_to 'Show', course_test_question_url([@course,@test,@question]) %> |
+

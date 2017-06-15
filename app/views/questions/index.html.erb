@@ -1,0 +1,28 @@
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+<p id="notice"><%= notice %></p>
+
+<h1>Preguntas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.title %></td>
+        <td><%= link_to 'Show', course_test_question_path(@course.id,@test.id,question.id) %></td>
+        <td><%= link_to 'Edit', edit_course_test_question_path(@course.id,@test.id,question.id) %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_course_test_question_path(@course.id,@test.id) %>

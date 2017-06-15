@@ -1,0 +1,10 @@
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Título:</strong>
+  <%= @question.title %>
+</p>
+
+<%= link_to 'Edit', edit_course_test_question_path(@course.id,@test.id,@question.id) %> |
+

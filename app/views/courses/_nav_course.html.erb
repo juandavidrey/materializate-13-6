@@ -1,0 +1,18 @@
+<div class="row">
+
+<div class="col-sm-3">
+	
+    <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+    	<li><%= link_to 'Información del curso', course_path(id_curso) %></li>
+    	<li><%= link_to 'Tests', course_tests_path(id_curso) %></li>
+    	<li><%= link_to 'Inscritos', inscritos_path(id_curso) %></li>
+    	<li><%= link_to 'Estadísticas' %></li>
+    	<li><%= link_to 'Reportes' %></li>
+    </ul>
+
+
+</div>
+
+<div class="col-sm-9">
+<div class="panel panel-default">
+<div class="panel-heading"><h4 class="text-center"><%=curso%></h4></div>

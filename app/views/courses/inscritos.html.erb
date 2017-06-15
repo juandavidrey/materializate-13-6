@@ -1,0 +1,28 @@
+
+<%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
+
+ <div class="panel-body">
+
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>N°</th>
+      <th>Correo electrónico</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inscritos.each do |inscrito| %>
+      <tr>
+        <td><%= inscrito.id %></td>
+        <td><%= User.find(inscrito.user_id).email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>

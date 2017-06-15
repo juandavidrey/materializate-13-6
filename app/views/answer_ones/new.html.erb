@@ -1,0 +1,9 @@
+<h1>Nueva pregunta con respuesta única</h1>
+
+<h3><%=@question.title %></h3>
+<br>
+
+
+<%= render 'form', answer_one: @answer_one %>
+
+<%= link_to 'Back',  course_test_question_answer_ones_path %>
