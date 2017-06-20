@@ -13,7 +13,7 @@ end
 end
 
 
-get '/courses/:id/inscribir', to: 'courses#inscribir'
+get '/courses/:id/inscribir', to: 'courses#inscribir' , as: 'inscribir'
 get '/courses/:id/inscritos', to: 'courses#inscritos' , as: 'inscritos'
 
 
