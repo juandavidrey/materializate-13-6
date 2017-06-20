@@ -1,22 +1,26 @@
 <%= form_for([@test.course, @test]) do |f| %>
   <% if test.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(test.errors.count, "error") %>Prohibido esta prueba de ser guardado:</h2>
-
+      
       <ul>
       <% test.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="alert alert-warning">
+<%= message %>
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title, "Título" %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div class="actions">
-	<%= f.submit %>
+    <button class="btn btn-primary" type="submit" name="action">
+    <i class="material-icons right">Crear examen</i>
+  </button>
   </div>
+
 <% end %>

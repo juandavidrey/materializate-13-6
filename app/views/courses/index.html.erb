@@ -1,12 +1,12 @@
 <div class="panel panel-default">
-  <div class="panel-heading"><h4 class="text-center">Cursos</h4></div>
+  <div class="panel-heading"><h4 class="text-center">Mis cursos</h4></div>
   <div class="panel-body">
 
 
 
  <div class="row">
-
-<% @courses.each do |course| %>
+<% if user_signed_in? && current_user.is_teacher_user? %>
+	<% @courses.each do |course| %>
 
 	<div class="col-sm-3">
   		<%= link_to course do %>
@@ -14,13 +14,39 @@
 		<% end %>
 	</div>
  
+	<% end %>
 
- <% end %>
+<% else %>
+
+
+<% if @c_inscritos != nil %>
+
+<% @c_inscritos.each do |course| %>
+
+<%course=Course.find(course.course_id )%>
+<div class="col-sm-3">
+  		<%= link_to course do %>
+  			<span class="glyphicon glyphicon-folder-open"><p id="curso_p"><%= course.nombre %></p></span>
+		<% end %>
+	</div>
+<% end %>
+<% else %>
+<div class="text-center">
+<h3>No se ha registrado en ningún curso</h3>
+</div>
+<% end %>
+
+<% end %>
+
+
+
+
 
 </div>
 
 
 <br>
+
 <% if user_signed_in? && current_user.is_teacher_user? %>
 <%= link_to new_course_path do %>
 <button type="button" class="btn btn-primary btn-md">Nuevo curso</button>
@@ -33,6 +59,25 @@
 </div>
 </div>
 
+
+<% if user_signed_in? && current_user.is_student_user? %>
+<br>
 <div class="panel panel-default">
-  
+  <div class="panel-heading"><h4 class="text-center">Cursos disponibles</h4></div>
+  <div class="panel-body">
+<div class="row">
+
+<% @courses.each do |course| %>
+
+<div class="col-sm-3">
+  		<%= link_to course do %>
+  			<span class="glyphicon glyphicon-folder-open"><p id="curso_p"><%= course.nombre %></p></span>
+		<% end %>
+	</div>
+
+ <% end %>
+
 </div>
+</div>
+</div>
+<% end %> 

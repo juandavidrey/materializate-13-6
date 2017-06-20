@@ -2,9 +2,37 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Título:</strong>
-  <%= @question.title %>
+  <strong>Pregunta :</strong>
+  <p><%= @question.title %></p>
 </p>
 
-<%= link_to 'Edit', edit_course_test_question_path(@course.id,@test.id,@question.id) %> |
 
+<% if @answer_ones==nil %>
+
+<div class="text-center">
+<h3>No ha agregado las opciones de respuesta</h3>
+
+<br>
+
+<%= link_to new_course_test_question_answer_one_path(@course,@test,@question)  do %>
+<button type="button" class="btn btn-primary btn-md">Añadir respuestas</button>
+<% end %>
+
+
+</div>
+<br>
+
+<% else %>
+
+  <% @answer_ones.each do |answer_one| %>
+   <p>Correcta: <%= answer_one.correcta %> </p>
+   <p>Incorrecta: <%= answer_one.opc1 %> </p>
+   <p>Incorrecta: <%= answer_one.opc2 %> </p>
+   <p>Incorrecta: <%= answer_one.opc3 %> </p>
+      
+   <%= link_to 'Edit', edit_course_test_question_answer_one_path(@course.id,@test.id,@question.id,answer_one.id) %>
+      
+    <% end %>
+
+
+<% end %>

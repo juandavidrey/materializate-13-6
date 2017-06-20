@@ -6,8 +6,10 @@
     	<li><%= link_to 'Información del curso', course_path(id_curso) %></li>
     	<li><%= link_to 'Tests', course_tests_path(id_curso) %></li>
     	<li><%= link_to 'Inscritos', inscritos_path(id_curso) %></li>
-    	<li><%= link_to 'Estadísticas' %></li>
+<% if user_signed_in? && current_user.is_teacher_user? %>
     	<li><%= link_to 'Reportes' %></li>
+
+  <% end %> 
     </ul>
 
 

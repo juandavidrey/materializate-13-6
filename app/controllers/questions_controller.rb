@@ -2,6 +2,8 @@
 #Esta clase es la encargada de hacer todas las acciones CRUD en la tabla question
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+before_action :authenticate_teacher?, only: [:create, :edit, :update, :destroy, :show]
 
   #Este método nos listará todos las preguntas
   def index
@@ -16,6 +18,13 @@ class QuestionsController < ApplicationController
     @course = Course.find(params[:course_id])
     @test = Test.find(params[:test_id])
     @question = @test.questions.find(params[:id])
+
+    if AnswerOne.exists?(:question_id => @question.id)
+    @answer_ones = AnswerOne.where(question_id: @question.id)
+    else
+     @answer_ones=nil
+    end
+
   end
 
    #Método para crear en un objeto de question.
@@ -41,7 +50,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.create(question_params)
     respond_to do |format|
       if @question.save
-        format.html { redirect_to course_test_question_url([@course,@test,@question]), notice: 'Question was successfully created.' }
+        format.html { redirect_to course_test_question_path(@course,@test,@question), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -57,7 +66,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.find(params[:id])
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to course_test_question_url([@course,@test,@question]), notice: 'Question was successfully updated.' }
+        format.html { redirect_to course_test_question_path(@course,@test,@question), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }

@@ -1,10 +1,6 @@
 <%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
 
-<h1>Nuevo exámen</h1>
+<h1>Nuevo examen</h1>
 
 <%= render 'form', test: @test %>
 
-<div class="panel-footer">
-<%= link_to 'Regresar', course_tests_path %>
-</div>
-<!-- <%= link_to 'Mostrar', course_tests_path(@test.course)%> -->

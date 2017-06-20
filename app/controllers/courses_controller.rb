@@ -3,12 +3,28 @@
 class CoursesController < ApplicationController
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: []
-  before_action :authenticate_teacher?, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_teacher?, only: [:create, :edit, :update, :destroy, :new]
+  before_action :authenticate_student?, only: [:inscribir]
   
   #Este método nos listará todos los cursos
   def index
-    @courses = Course.where(user_id: current_user.id)
+
+  if current_user.is_teacher_user?
+     @courses = Course.where(user_id: current_user.id)
+
+  else
+    @courses = Course.all
+
+    if HasCourse.exists?(:user_id => current_user.id)
+    @c_inscritos = HasCourse.where(user_id: current_user.id)
+    
+  else
+    @prueba="no"
+    @c_inscritos =nil
+    end 
+  end
+
     
   end
 
@@ -19,7 +35,7 @@ class CoursesController < ApplicationController
   end
   #Método para inscribir estudiantes en un curso.
   def inscribir
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:id])
     
     if HasCourse.exists?(:user_id => current_user.id, :course_id => @course.id)
       

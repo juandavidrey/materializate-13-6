@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
 		end
 	#Método para autenticar si el usuario que inició sesión es estudiante.
 	def authenticate_student?
-		redirect_to root_path unless user_signed_in? && current_user.is_student_user?
+		redirect_to 'root_path' unless user_signed_in? && current_user.is_student_user?
 		end
 	#Método para autenticar si el usuario que inició sesión es profesor.
 	def authenticate_teacher?
-		redirect_to root_path unless user_signed_in? && current_user.is_teacher_user?
+		redirect_to 'root_path' unless user_signed_in? && current_user.is_teacher_user?
 		end
 
 

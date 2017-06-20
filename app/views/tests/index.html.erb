@@ -20,8 +20,9 @@
 </div>
 <br>
 
+<% if user_signed_in? && current_user.is_teacher_user? %>
 
 <%= link_to new_course_test_path  do %>
-<button type="button" class="btn btn-primary btn-md">Nuevo exámen</button>
+<button type="button" class="btn btn-primary btn-md">Nuevo examen</button>
  <% end %>
-
+<% end %>

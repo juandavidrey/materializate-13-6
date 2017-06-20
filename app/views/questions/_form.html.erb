@@ -1,22 +1,25 @@
 <%= form_for([@course,@test, @question]) do |f| %>
   <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> Prohibió salvar esta pregunta:</h2>
 
       <ul>
       <% question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+       <div class="alert alert-warning">
+<%= message %>
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title, "Titulo" %>
-    <%= f.text_area :title %>
+    <%= f.text_area :title , class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <button class="btn btn-primary" type="submit" name="action">
+    <i class="material-icons right">Crear pregunta</i>
+  </button>
   </div>
 <% end %>

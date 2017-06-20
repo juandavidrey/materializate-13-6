@@ -1,9 +1,9 @@
 class AnswerOne < ApplicationRecord
 
-validates :correcta, presence: true
-validates :opc1, presence: true
-validates :opc2, presence: true
-validates :opc3, presence: true
+validates :correcta,:presence => {:message => "no puede estar vacía."}
+validates :opc1, :presence => {:message => "no puede estar vacía."}
+validates :opc2, :presence => {:message => "no puede estar vacía."}
+validates :opc3, :presence => {:message => "no puede estar vacía."}
 
 belongs_to :question
 

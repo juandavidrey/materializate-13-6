@@ -2,11 +2,12 @@
 #Clase CoursesController
 #Esta clase es la encargada de hacer todas las acciones CRUD en la tabla answer.
 class AnswerOnesController < ApplicationController
-  before_action :set_answer_one, only: [:show, :edit, :update, :destroy]
-
+before_action :set_answer_one, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!
+before_action :authenticate_teacher?, only: [:index, :create, :edit, :update, :destroy, :show]
   #Este método nos listará todos las respuestas
   def index
-     @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id])
     @test = Test.find(params[:test_id])
     @question = @test.questions.find(params[:question_id])
     @answer_ones = AnswerOne.where(question_id: @question.id)
@@ -14,10 +15,10 @@ class AnswerOnesController < ApplicationController
 
   # Método para visualizar determinada respuesta.
   def show
-   @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id])
     @test = Test.find(params[:test_id])
     @question = @test.questions.find(params[:question_id])
-     @answer_one = AnswerOne.find(params[:id])
+    @answer_one = AnswerOne.find(params[:id])
 
   end
 
@@ -48,7 +49,7 @@ class AnswerOnesController < ApplicationController
 
     respond_to do |format|
       if @answer_one.save
-        format.html { redirect_to course_test_question_answer_one_url([@course,@test,@question,@answer_one]), notice: 'Answer one was successfully created.' }
+        format.html { redirect_to course_test_question_answer_one_path(@course,@test,@question,@answer_one), notice: 'Answer one was successfully created.' }
         format.json { render :show, status: :created, location: @answer_one }
       else
         format.html { render :new }
@@ -65,7 +66,7 @@ class AnswerOnesController < ApplicationController
     @question = @test.questions.find(params[:question_id])
     respond_to do |format|
       if @answer_one.update(answer_one_params)
-        format.html { redirect_to  course_test_question_answer_one_url([@course,@test,@question,@answer_one]), notice: 'Answer one was successfully updated.' }
+        format.html { redirect_to  course_test_question_answer_one_path(@course,@test,@question,@answer_one), notice: 'Answer one was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer_one }
       else
         format.html { render :edit }

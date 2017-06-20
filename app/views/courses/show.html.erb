@@ -4,6 +4,8 @@
 
 
  <div class="panel-body">
+ <div class="text-center">
+<br>
 <p>
   <strong>Nombre:</strong>
   <%= @course.nombre %>
@@ -18,7 +20,12 @@
 
 <% if user_signed_in? && current_user.is_student_user? && !current_user.is_registered(current_user.id,@course.id)%>
 
-<%= link_to 'Inscribirse', {:action => 'inscribir'} %>
+
+
+<%= link_to inscribir_path do %>
+<button type="button" class="btn btn-primary btn-md">Inscribirse</button>
+<% end %>
+
 
 <% end %>
 
@@ -27,4 +34,4 @@
 <%= link_to 'Regresar', courses_path %>
  <% end %> 
 </div>
-
+</div>

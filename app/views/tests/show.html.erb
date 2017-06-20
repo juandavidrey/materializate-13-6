@@ -1,11 +1,41 @@
 <%= render 'courses/nav_course' , curso: @course.nombre , id_curso: @course.id %>
-<p id="notice"><%= notice %></p>
 
+<% if user_signed_in? && current_user.is_teacher_user? %>
 <p>
   <strong>Título:</strong>
-  <%= @test.title %>
+  <%= @test.title %> 
+<%= link_to 'Editar', edit_course_test_path(@test.course, @test) %>
 </p>
 
+<% if @questions.present? %>
+<% @questions.each do |question| %>
+      
+    <%= question.title %>
+    <%= link_to 'Show', course_test_question_path(@course.id,@test.id,question.id) %>
+    <%= link_to 'Edit', edit_course_test_question_path(@course.id,@test.id,question.id) %><br>
 
-<%= link_to 'Editar', edit_course_test_path(@test.course, @test) %> |
-<%= link_to 'Regresar', course_tests_path(@test.course) %>
+ 	<% end %>
+<% else %>
+<h3>No ha agregado preguntas.</h3>
+<% end %>
+<br><br>
+<div class="text-left">
+<%= link_to new_course_test_question_path(@course.id,@test.id)  do %>
+<button type="button" class="btn btn-primary btn-md">Nueva pregunta</button>
+<% end %>
+</div>
+
+
+<% else %>
+
+<div class="text-center">
+<br>
+<p>Para resolver el examen de click sobre "Continuar". Solo tiene un intento</p>
+<%= link_to courses_path do %>
+<button type="button" class="btn btn-primary btn-md">Continuar</button>
+<% end %>
+
+</div>
+<% end %>
+
+ <br><br>

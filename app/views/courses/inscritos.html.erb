@@ -13,11 +13,13 @@
   </thead>
 
   <tbody>
+  <% cont=1 %>
     <% @inscritos.each do |inscrito| %>
       <tr>
-        <td><%= inscrito.id %></td>
-        <td><%= User.find(inscrito.user_id).email %></td>
+        <td><%= cont %></td>
+        <td><%= User.find(inscrito.user_id).name %></td>
       </tr>
+      <% cont=cont+1 %>
     <% end %>
   </tbody>
 </table>

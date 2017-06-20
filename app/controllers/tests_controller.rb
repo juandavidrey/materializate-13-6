@@ -2,18 +2,20 @@
 #Esta clase es la encargada de hacer todas las acciones CRUD en la tabla test
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
-
+ before_action :authenticate_user!
+before_action :authenticate_teacher?, only: [:create, :edit, :update, :destroy]
   #Este método nos listará todos los test
   def index
     @course = Course.find(params[:course_id])
     @tests = Test.where(course_id: @course.id)
+    
   end
 
   # Método para visualizar determinado test.
   def show
     @course = Course.find(params[:course_id])
     @test = @course.tests.find(params[:id])
-   
+   @questions = Question.where(test_id: @test.id)
   end
 
   #Método para crear en un objeto de test.
