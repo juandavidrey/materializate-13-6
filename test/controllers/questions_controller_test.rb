@@ -5,17 +5,17 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     @question = questions(:one)
   end
 
-  test "should get index" do
+  test "Debe obtener el índice" do
     get questions_url
     assert_response :success
   end
 
-  test "should get new" do
+  test "Debe obtener nuevo" do
     get new_question_url
     assert_response :success
   end
 
-  test "should create question" do
+  test "Debería crear una pregunta" do
     assert_difference('Question.count') do
       post questions_url, params: { question: { title: @question.title } }
     end
@@ -23,22 +23,22 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to question_url(Question.last)
   end
 
-  test "should show question" do
+  test "Debe mostrar la pregunta" do
     get question_url(@question)
     assert_response :success
   end
 
-  test "should get edit" do
+  test "Debe obtener editar" do
     get edit_question_url(@question)
     assert_response :success
   end
 
-  test "should update question" do
+  test "Debe actualizar la pregunta" do
     patch question_url(@question), params: { question: { title: @question.title } }
     assert_redirected_to question_url(@question)
   end
 
-  test "should destroy question" do
+  test "Debería destruir la pregunta" do
     assert_difference('Question.count', -1) do
       delete question_url(@question)
     end

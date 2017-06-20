@@ -5,17 +5,17 @@ class TestsControllerTest < ActionDispatch::IntegrationTest
     @test = tests(:one)
   end
 
-  test "should get index" do
+  test "Debe obtener el índice" do
     get tests_url
     assert_response :success
   end
 
-  test "should get new" do
+  test "Debe obtener nuevo" do
     get new_test_url
     assert_response :success
   end
 
-  test "should create test" do
+  test "Debe crear prueba" do
     assert_difference('Test.count') do
       post tests_url, params: { test: { title: @test.title } }
     end
@@ -23,12 +23,12 @@ class TestsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to test_url(Test.last)
   end
 
-  test "should show test" do
+  test "Debe mostrar la prueba" do
     get test_url(@test)
     assert_response :success
   end
 
-  test "should get edit" do
+  test "Debe obtener editar" do
     get edit_test_url(@test)
     assert_response :success
   end
@@ -38,7 +38,7 @@ class TestsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to test_url(@test)
   end
 
-  test "should destroy test" do
+  test "Debería destruir la prueba" do
     assert_difference('Test.count', -1) do
       delete test_url(@test)
     end
